@@ -49,17 +49,52 @@ const mockUserData = {
   phone: "07123456789"
 }
 
+const mockUserDataTwo = {
+  id: "2",
+  name: "Jamie",
+  email: "jamie@jamie.com",
+  website: "jamie.com",
+  phone: "07123456789"
+}
+
 describe( "Mock fetch request", () => {
   beforeEach( () => {
-    global.fetch = jest.fn( () => {
+    global.fetch = jest.fn( ( url ) => {
+
+      if( url[ url.length - 1 ] == 1 ) {
+        return Promise.resolve({
+          json: () => Promise.resolve( mockUserData )
+        })
+      }
       return Promise.resolve({
-        json: () => Promise.resolve( mockUserData )
+        json: () => Promise.resolve( mockUserDataTwo )
       })
+
     })
   })
 
   it( "renders expected user data", async () => {
     await act( async () => render( <App /> ) );
+    for( const [ key, value ] of Object.entries( mockUserData ) ) {
+      expect( screen.getByText( new RegExp( `${ key }: ${ value }`,'i' ) ) ).toBeInTheDocument();
+    }
+  })
+
+  it( "updates user data displayed", async () => {
+    const nextUserButton = screen.getByTestId( "button-nextUser" );
+    const previousUserButton = screen.getByTestId( "button-previousUser" );
+    
+    await act( async () => render( <App /> ) );
+    for( const [ key, value ] of Object.entries( mockUserData ) ) {
+      expect( screen.getByText( new RegExp( `${ key }: ${ value }`,'i' ) ) ).toBeInTheDocument();
+    }
+
+    await act( async () => fireEvent.click( nextUserButton ) );
+    for( const [ key, value ] of Object.entries( mockUserDataTwo ) ) {
+      expect( screen.getByText( new RegExp( `${ key }: ${ value }`,'i' ) ) ).toBeInTheDocument();
+    }
+
+    await act( async () => fireEvent.click( previousUserButton ) );
     for( const [ key, value ] of Object.entries( mockUserData ) ) {
       expect( screen.getByText( new RegExp( `${ key }: ${ value }`,'i' ) ) ).toBeInTheDocument();
     }
