@@ -1,0 +1,52 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background-color: #282c34;
+  overflow: auto;
+}
+
+.App h1, .App h2, .App p {
+  background: -webkit-linear-gradient( -70deg ,#a2facf,#64acff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.App h1 {
+  font-size: 4em;
+}
+
+.App p {
+  font-size: 1.25em;
+}
+
+.App .button-wrapper button {
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  height: 40px;
+  width: 150px;
+  color: #fff;
+  margin: 1em;
+  font-size: 1em;
+  opacity: .75;
+  cursor: pointer;
+}
+
+.App .button-wrapper button:first-of-type {
+  margin-left: 0;
+}
+
+.App .button-wrapper button:last-of-type {
+  margin-left: 0;
+}
+
+.App .button-wrapper button:disabled {
+  opacity: .3;
+}
+
+.App .button-wrapper button:not( :disabled ):hover {
+  opacity: 1;
+}
