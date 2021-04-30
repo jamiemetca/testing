@@ -1,6 +1,6 @@
 const { sumOfDifferences } = require( "../sumOfDifferences" );
 
-describe( "sumOfDifferences", () => {
+describe.skip( "sumOfDifferences", () => {
     
     test( "it returns a number", () => {
         expect( sumOfDifferences( [ 1,2 ] ) ).toEqual( expect.any( Number ) );

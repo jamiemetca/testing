@@ -1,6 +1,6 @@
 const { streetFighter2_characterSelection: sfFunction, streetFighter2_characterSelection } = require( "../streetFighter2_characterSelection" );
 
-describe( "Street fighter 2 - Character selection", () => {
+describe.skip( "Street fighter 2 - Character selection", () => {
 
     const fighters = [
         ["Ryu", "E.Honda", "Blanka", "Guile", "Balrog", "Vega"],
